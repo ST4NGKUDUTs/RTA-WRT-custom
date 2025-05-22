@@ -6,7 +6,7 @@
 #         https://github.com/ophub/amlogic-s9xxx-openwrt
 #         https://downloads.openwrt.org/releases
 #         https://downloads.immortalwrt.org/releases
-#         https://github.com/rtaserver/RTA-WRT
+#         https://github.com/rtaserver/ST4-WRT
 #
 # Command: ./config/imagebuilder/imagebuilder.sh <source:branch> <target>
 # Example: ./config/imagebuilder/imagebuilder.sh openwrt:24.10.0 x86-64
@@ -756,11 +756,11 @@ rebuild_firmware() {
         # Python3
         PACKAGES+=" python3 python3-pip"
         # AdguardHome
-        PACKAGES+=" adguardhome luci-app-adguardhome"
+        #PACKAGES+=" adguardhome luci-app-adguardhome" | edited
         # Tunnel
         PACKAGES+=" $OPENCLASH $MIHOMO $PASSWALL $NEKOCLASH"
         # Docker
-        PACKAGES+=" docker docker-compose dockerd luci-app-dockerman"
+        #PACKAGES+=" docker docker-compose dockerd luci-app-dockerman" | edited
         # Speedtest
         PACKAGES+=" librespeed-go python3-speedtest-cli iperf3-ssl luci-app-netspeedtest"
 
@@ -781,7 +781,7 @@ rebuild_firmware() {
     MISC=""
     case "${op_sourse}" in
     openwrt)
-        MISC+=" luci-app-temp-status luci-app-cpu-status-mini"
+        MISC+=" luci-app-temp-status"
         EXCLUDED+=" -dnsmasq"
         ;;
     immortalwrt)
@@ -1150,7 +1150,7 @@ build_mod_sdcard() {
     echo -e "${INFO} Renaming image file..."
     local kernel
     kernel=$(grep -oP 'k[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9-]+)?' <<<"${file_name}")
-    local new_name="RTA-WRT${op_source}-${op_branch}-Amlogic_s905x-${suffix}-${kernel}.img.gz"
+    local new_name="ST4-WRT${op_source}-${op_branch}-Amlogic_s905x-${suffix}-${kernel}.img.gz"
 
     if -f "../${new_name}"; then
         rm -rf "../${new_name}"
@@ -1242,9 +1242,9 @@ rename_firmware() {
                 fi
                 local new_name
                 if [[ -n "$kernel" ]]; then
-                    new_name="RTA-WRT${op_source}-${op_branch}-${replace}-${kernel}.img.gz"
+                    new_name="ST4-WRT${op_source}-${op_branch}-${replace}-${kernel}.img.gz"
                 else
-                    new_name="RTA-WRT${op_source}-${op_branch}-${replace}.img.gz"
+                    new_name="ST4-WRT${op_source}-${op_branch}-${replace}.img.gz"
                 fi
                 echo -e "${INFO} Renaming: $file → $new_name"
                 mv "$file" "$new_name" || {
@@ -1256,7 +1256,7 @@ rename_firmware() {
         for file in *"${search}"*.tar.gz; do
             if [[ -f "$file" ]]; then
                 local new_name
-                new_name="RTA-WRT${op_source}-${op_branch}-${replace}.tar.gz"
+                new_name="ST4-WRT${op_source}-${op_branch}-${replace}.tar.gz"
                 echo -e "${INFO} Renaming: $file → $new_name"
                 mv "$file" "$new_name" || {
                     echo -e "${WARN} Failed to rename $file"
