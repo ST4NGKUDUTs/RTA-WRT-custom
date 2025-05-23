@@ -750,17 +750,17 @@ rebuild_firmware() {
     PACKAGES+=" php8 php8-fastcgi php8-fpm php8-mod-session php8-mod-ctype php8-mod-fileinfo php8-mod-zip php8-mod-iconv php8-mod-mbstring"
 
     # More
-    PACKAGES+=" luci-app-poweroff luci-app-log-viewer luci-app-ramfree"
+    #PACKAGES+=" luci-app-poweroff luci-app-log-viewer luci-app-ramfree"
 
     if [[ "$op_fiturs" == "full-fitur" ]]; then
         # Python3
         PACKAGES+=" python3 python3-pip"
         # AdguardHome
-        PACKAGES+=" adguardhome luci-app-adguardhome"
+        #PACKAGES+=" adguardhome luci-app-adguardhome"
         # Tunnel
         PACKAGES+=" $OPENCLASH $MIHOMO $PASSWALL $NEKOCLASH"
         # Docker
-        PACKAGES+=" docker docker-compose dockerd luci-app-dockerman"
+        #PACKAGES+=" docker docker-compose dockerd luci-app-dockerman"
         # Speedtest
         PACKAGES+=" librespeed-go python3-speedtest-cli iperf3-ssl luci-app-netspeedtest"
 
